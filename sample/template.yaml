@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Sample SAM Template for sam-app
+Architectures: 
+  - x86_64
+
+Resources:
+  ServerlessHttpApi:
+    Type: AWS::Serverless::Function 
+    Properties:
+      Description: "API Gateway endpoint URL"
+      CodeUri: ./src/
+      Handler: sample
+      Runtime: dotnet8
+      Events:
+        RootResource:
+          PayloadFormatVersion: '2.0'
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+      Environment:
+        Variables:
+          OTEL_EXPORTER_OTLP_ENDPOINT:
+          OTEL_EXPORTER_OTLP_INSECURE:
+
+
+Outputs:
+  WebEndpoint:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"

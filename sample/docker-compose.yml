@@ -1,0 +1,16 @@
+services:
+  collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    networks:
+      - collector_net
+    platform: linux/amd64
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+      - "13133:13133"
+    volumes:
+      - ./config.yaml:/etc/otelcol-contrib/config.yaml
+
+networks:
+  collector_net:
+    driver: bridge
