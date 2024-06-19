@@ -1,0 +1,21 @@
+{
+	"name": "C# (.NET)",
+	"image": "mcr.microsoft.com/devcontainers/dotnet:1-8.0-bookworm",
+	"features": {
+		"ghcr.io/devcontainers/features/aws-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2.11.0": {},
+		"ghcr.io/customink/codespaces-features/sam-cli:1": {}
+	},
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.aws,target=/home/dotnet/.aws,type=bind,consistency=cached"
+	],
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"github.vscode-github-actions",
+				"humao.rest-client"
+			]
+		}
+	}
+}
